@@ -41,7 +41,7 @@ const App = () => {
             const timestamp = new Date()
             console.log(`Fetched at ${timestamp}`)
             setRefresh(timestamp)
-          }, 1000),
+          }, 5000),
         )
     }
 
