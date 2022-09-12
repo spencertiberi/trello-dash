@@ -1,5 +1,4 @@
 import React from 'react'
-import './App.css'
 import List from './components/List'
 import { ThemeProvider } from '@mui/material/styles'
 import { Paper, Typography } from '@mui/material'
