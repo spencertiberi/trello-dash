@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import List from './components/List'
 import { ThemeProvider } from '@mui/material/styles'
-import { Paper, Typography } from '@mui/material'
+import { Paper, Typography, Button } from '@mui/material'
+import { FullScreen, useFullScreenHandle } from 'react-full-screen'
 import theme from './theme'
 
 const API_KEY = process.env.REACT_APP_API_KEY
@@ -18,6 +19,8 @@ const App = () => {
   const [members, setMembers] = React.useState({})
   const [lists, setLists] = React.useState([])
   const [cards, setCards] = React.useState([])
+
+  const handle = useFullScreenHandle()
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -103,31 +106,43 @@ const App = () => {
     )
   }
 
+  console.log(handle)
+
   return (
     <ThemeProvider theme={theme}>
-      <Paper
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: '100vw',
-          height: '100vh',
-          backgroundColor: 'primary.dark',
-          borderRadius: '0px',
-        }}
-      >
-        <Typography
-          variant="h1"
+      <FullScreen handle={handle}>
+        <Paper
           sx={{
-            color: 'offWhite',
-            margin: '0.25rem 0 0.75rem',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'primary.dark',
+            borderRadius: '0px',
           }}
         >
-          19 Buck TODO List
-        </Typography>
-        <Board />
-      </Paper>
+          <Typography
+            variant="h1"
+            sx={{
+              color: 'offWhite',
+              margin: '0.25rem 0 0.75rem',
+            }}
+          >
+            19 Buck TODO List
+          </Typography>
+          <Button
+            color="primary"
+            onClick={handle[`${handle.active === false ? 'enter' : 'exit'}`]}
+            sx={{ position: 'absolute', right: '15px', top: '15px' }}
+            disableElevation="true"
+          >
+            {`${handle.active === false ? 'Enter' : 'Exit'} FullScreen`}
+          </Button>
+          <Board />
+        </Paper>
+      </FullScreen>
     </ThemeProvider>
   )
 }

@@ -41,7 +41,7 @@ const ListCard = ({ cardInfo, members, listTitle }) => {
       sx={{
         bgcolor: color !== defaultColor ? 'offWhite' : color,
         margin: '0 0 10px',
-        // opacity: ['Complete', 'Backlog'].includes(listTitle) ? 0.7 : 1,
+        opacity: ['Complete', 'Backlog'].includes(listTitle) ? 0.7 : 1,
       }}
       elevation={2}
     >
@@ -80,11 +80,11 @@ const List = ({ title, cards, members }) => {
   const titleColor = () => {
     switch (title) {
       case 'Complete':
-        return 'fadeColor'
+        return 'primary.main'
       case 'Backlog':
-        return 'fadeColor'
+        return 'primary.main'
       default:
-        return 'text.primary'
+        return 'primary.light'
     }
   }
 
@@ -108,7 +108,6 @@ const List = ({ title, cards, members }) => {
           backgroundColor: listColor(),
           height: '80vh',
           overflow: 'scroll',
-          opacity: ['Complete', 'Backlog'].includes(title) ? 0.7 : 1,
         }}
       >
         <Cards>
