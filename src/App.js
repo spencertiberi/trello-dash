@@ -48,14 +48,41 @@ const App = () => {
     fetchData()
   }, [refesh])
 
-  // Need Webhook for Trello -> Update refresh with timestamp value
-
   const Board = () => {
+    const alphaOrder = (a, b) => {
+      if (a.name > b.name) {
+        return 1
+      } else if (a.name < b.name) {
+        return -1
+      } else {
+        return 0
+      }
+    }
+
+    const sortDue = (a, b) => {
+      if (a.due === null && b.due !== null) {
+        return 1
+      } else if (a.due !== null && b.due === null) {
+        return -1
+      } else if (a.due > b.due) {
+        return 1
+      } else if (a.due < b.due) {
+        return -1
+      } else {
+        return alphaOrder(a, b)
+      }
+    }
+
     const listData = lists.map((list, i) => {
       const listCards = cards.filter((card) => card.idList === list.id)
-
+      console.log(listCards)
       return (
-        <List title={list.name} cards={listCards} members={members} key={i} />
+        <List
+          title={list.name}
+          cards={listCards.sort(sortDue)}
+          members={members}
+          key={i}
+        />
       )
     })
 

@@ -13,7 +13,7 @@ import config from '../../config'
 const ListCard = ({ cardInfo, members, listTitle }) => {
   const member = cardInfo.idMembers[0]
   const dueDate = new Date(cardInfo.due)
-  const defaultColor = 'lightenColor'
+  const defaultColor = 'darkenColor'
   let avatar = <Avatar sx={{ bgcolor: 'grey' }}></Avatar>
   let color = defaultColor
 
