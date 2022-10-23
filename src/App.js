@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import List from './components/List'
 import { ThemeProvider } from '@mui/material/styles'
 import { Paper, Typography, Button } from '@mui/material'
@@ -78,7 +78,6 @@ const App = () => {
 
     const listData = lists.map((list, i) => {
       const listCards = cards.filter((card) => card.idList === list.id)
-      console.log(listCards)
       return (
         <List
           title={list.name}
@@ -136,7 +135,7 @@ const App = () => {
             color="primary"
             onClick={handle[`${handle.active === false ? 'enter' : 'exit'}`]}
             sx={{ position: 'absolute', right: '15px', top: '15px' }}
-            disableElevation="true"
+            disableElevation
           >
             {`${handle.active === false ? 'Enter' : 'Exit'} FullScreen`}
           </Button>

@@ -102,6 +102,10 @@ const theme = createTheme({
       main: '#ce93d8',
       contrastText: darkenColor,
     },
+    education: {
+      main: '#F4C430',
+      contrastText: darkenColor,
+    },
   },
 })
 

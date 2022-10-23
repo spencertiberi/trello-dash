@@ -25,14 +25,20 @@ const ListCard = ({ cardInfo, members, listTitle }) => {
 
   const Labels = () => (
     <Stack direction="row" spacing={1} sx={{ padding: '10px 15px 10px' }}>
-      {cardInfo.labels.map((label, i) => (
-        <Chip
-          key={i}
-          label={label.name}
-          color={`${label.name.toLowerCase() || 'white'}`}
-          size="small"
-        />
-      ))}
+      {cardInfo.labels.map((label, i) => {
+        return (
+          <Chip
+            key={i}
+            label={label.name}
+            color={`${
+              config.labelsWithColors.includes(label.name.toLowerCase())
+                ? label.name.toLowerCase()
+                : 'tertiary'
+            }`}
+            size="small"
+          />
+        )
+      })}
     </Stack>
   )
 
