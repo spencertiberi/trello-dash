@@ -78,6 +78,9 @@ const App = () => {
 
     const listData = lists.map((list, i) => {
       const listCards = cards.filter((card) => card.idList === list.id)
+      if (list.name === 'Backlog') {
+        return
+      }
       return (
         <List
           title={list.name}
@@ -93,9 +96,9 @@ const App = () => {
         sx={{
           display: 'flex',
           flexDirection: 'row',
-          justifyContent: 'space-between',
+          justifyContent: 'space-around',
           width: '90vw',
-          height: '90vh',
+          height: '85vh',
           background: 'transparent',
         }}
         elevation={0}
