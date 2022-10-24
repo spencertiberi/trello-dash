@@ -24,7 +24,11 @@ const ListCard = ({ cardInfo, members, listTitle }) => {
   }
 
   const Labels = () => (
-    <Stack direction="row" spacing={1} sx={{ padding: '0px 15px 10px' }}>
+    <Stack
+      direction="row-reverse"
+      spacing={1}
+      sx={{ padding: '0px 15px 10px' }}
+    >
       {cardInfo.labels.map((label, i) => {
         return (
           <Chip
@@ -54,11 +58,15 @@ const ListCard = ({ cardInfo, members, listTitle }) => {
       <CardHeader
         avatar={listTitle !== 'Backlog' && avatar}
         title={cardInfo.name}
-        titleTypographyProps={{ fontSize: '1.1rem', color: `${color}.dark` }}
+        titleTypographyProps={{
+          fontSize: '1.1rem',
+          color: `${color}.dark`,
+        }}
         subheaderTypographyProps={{
           color: listTitle !== 'Complete' ? 'error.light' : 'success.light',
         }}
         subheader={cardInfo.due ? `Due: ${dueDate.toDateString()}` : ''}
+        sx={{ padding: '16px 16px 0' }}
       />
       ${listTitle !== 'Backlog' && <Labels />}
     </Card>
