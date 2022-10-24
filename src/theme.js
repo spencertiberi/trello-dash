@@ -11,10 +11,10 @@ const fadeColor = `rgba(255,255,255,0.25)`
 const theme = createTheme({
   typography: {
     fontFamily: [
+      'Roboto',
       '-apple-system',
       'BlinkMacSystemFont',
       '"Segoe UI"',
-      'Roboto',
       '"Helvetica Neue"',
       'Arial',
       'sans-serif',
