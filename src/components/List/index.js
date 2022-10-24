@@ -68,7 +68,7 @@ const ListCard = ({ cardInfo, members, listTitle }) => {
         subheader={cardInfo.due ? `Due: ${dueDate.toDateString()}` : ''}
         sx={{ padding: '16px 16px 0' }}
       />
-      ${listTitle !== 'Backlog' && <Labels />}
+      {listTitle !== 'Backlog' && <Labels />}
     </Card>
   )
 }
