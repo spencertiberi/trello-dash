@@ -8,6 +8,42 @@ const darkenColor = `rgba(0,0,0,0.65)`
 const lightenColor = `rgba(255,255,255,0.75)`
 const fadeColor = `rgba(255,255,255,0.25)`
 
+const colorGen = () => {
+  let r = Math.floor(Math.random() * (221 - 64) + 64)
+  let g = Math.floor(Math.random() * (221 - 64) + 64)
+  let b = Math.floor(Math.random() * (221 - 64) + 64)
+
+  const min = Math.min(r, g, b)
+  const max = Math.max(r, g, b)
+
+  r = (r % max).toString(16)
+  g = (g % max).toString(16)
+  b = (b % max).toString(16)
+
+  if (r.length < 2) {
+    r = `0${r}`
+  }
+  if (g.length < 2) {
+    g = `0${g}`
+  }
+  if (b.length < 2) {
+    b = `0${b}`
+  }
+
+  switch (min.toString(16)) {
+    case r:
+      return `#dd${g}${b}`
+    case g:
+      return `#${r}dd${b}`
+    case b:
+      return `#${r}${g}dd`
+    default:
+      return `#${r}${g}${b}`
+  }
+}
+
+const colorChoice = colorGen()
+
 const theme = createTheme({
   typography: {
     fontFamily: [
@@ -43,22 +79,29 @@ const theme = createTheme({
       primary: lightenColor,
       secondary: darkenColor,
     },
-    // Teal
+    // Random color!
     primary: {
+      light: `#ffffffaa`,
+      main: `#ffffff55`,
+      dark: `${colorChoice}ff`,
+      contrastText: '#000000aa',
+    },
+    // Teal
+    secondary: {
       light: '#39796b',
       main: '#004d40',
       dark: '#00251a',
       contrastText: white,
     },
     // Rose
-    secondary: {
+    tertiary: {
       light: '#e35183',
       main: '#ad1457',
       dark: '#78002e',
       contrastText: white,
     },
     // Coffee
-    tertiary: {
+    coffee: {
       light: '#7b5e57',
       main: '#4e342e',
       dark: '#260e04',

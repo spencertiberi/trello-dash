@@ -128,7 +128,7 @@ const App = () => {
           <Typography
             variant="h1"
             sx={{
-              color: 'offWhite',
+              color: 'primary.contrastText',
               margin: '0.25rem 0 0.75rem',
             }}
           >
