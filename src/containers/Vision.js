@@ -23,8 +23,8 @@ const Item = ({ time, event }) => (
       </Typography>
     </TimelineOppositeContent>
     <TimelineSeparator>
-      <TimelineDot color="primary" sx={{ width: '6px', height: '6px' }} />
-      <TimelineConnector sx={{ bgcolor: 'primary.main', width: '4px' }} />
+      <TimelineDot color="primary" sx={{ width: '8px', height: '8px' }} />
+      <TimelineConnector sx={{ bgcolor: 'primary.main', width: '5px' }} />
     </TimelineSeparator>
     <TimelineContent color="text.primary">
       <Typography
@@ -113,7 +113,7 @@ const Vision = () => (
       >
         Tanya
       </Typography>
-      <Timeline>
+      <Timeline sx={{ width: '45vw' }}>
         {tanya.map(({ time, event }) => (
           <Item time={time} event={event} />
         ))}
@@ -130,7 +130,7 @@ const Vision = () => (
       >
         Spencer
       </Typography>
-      <Timeline position="alternate">
+      <Timeline position="alternate" sx={{ width: '45vw' }}>
         {spencer.map(({ time, event }) => (
           <Item time={time} event={event} />
         ))}
