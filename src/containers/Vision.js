@@ -16,21 +16,21 @@ const Item = ({ time, event }) => (
       <Typography
         variant="h2"
         sx={{
-          fontSize: '1.5em',
+          fontSize: '2em',
         }}
       >
         {time}
       </Typography>
     </TimelineOppositeContent>
     <TimelineSeparator>
-      <TimelineDot color="primary" />
+      <TimelineDot color="primary" sx={{ width: '6px', height: '6px' }} />
       <TimelineConnector sx={{ bgcolor: 'primary.main', width: '4px' }} />
     </TimelineSeparator>
     <TimelineContent color="text.primary">
       <Typography
         variant="h2"
         sx={{
-          fontSize: '1.5em',
+          fontSize: '2em',
           fontWeight: 'bold',
         }}
       >
