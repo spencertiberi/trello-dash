@@ -3,7 +3,9 @@ import List from './components/List'
 import { ThemeProvider } from '@mui/material/styles'
 import { Paper, Typography, Button } from '@mui/material'
 import { FullScreen, useFullScreenHandle } from 'react-full-screen'
-import theme from './theme'
+import theme, { colorGen } from './theme'
+import Calendar from './containers/Calendar'
+import Vision from './containers/Vision'
 
 const API_KEY = process.env.REACT_APP_API_KEY
 const API_TOKEN = process.env.REACT_APP_API_TOKEN
@@ -19,10 +21,17 @@ const App = () => {
   const [members, setMembers] = React.useState({})
   const [lists, setLists] = React.useState([])
   const [cards, setCards] = React.useState([])
+  const [page, setPage] = React.useState(0)
+  const [color, setColor] = React.useState([colorGen(), colorGen(), colorGen()])
 
   const handle = useFullScreenHandle()
 
   React.useEffect(() => {
+    const nextPage = async () => {
+      setTimeout(() => {
+        setPage((page + 1) % 3)
+      }, 15000)
+    }
     const fetchData = async () => {
       await fetch(
         `${API_ROOT}${BOARD_QUERY}${MEMBER_QUERY}${CARD_QUERY}${LIST_QUERY}${QUERY_API_CRED}`,
@@ -47,7 +56,7 @@ const App = () => {
           }, 5000),
         )
     }
-
+    nextPage()
     fetchData()
   }, [refesh])
 
@@ -108,10 +117,11 @@ const App = () => {
     )
   }
 
-  console.log(handle)
+  const pages = [<Board />, <Calendar />, <Vision />]
+  const titles = ['TODOs', 'Dashboard', 'Vision']
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme(color[page])}>
       <FullScreen handle={handle}>
         <Paper
           sx={{
@@ -132,7 +142,19 @@ const App = () => {
               margin: '0.25rem 0 0.75rem',
             }}
           >
-            19 Buck TODO List
+            19 Buck _____________
+          </Typography>
+          <Typography
+            variant="h1"
+            sx={{
+              color: 'primary',
+              position: 'relative',
+              top: '-3.25rem',
+              left: '7.75rem',
+              lineHeight: '0',
+            }}
+          >
+            {titles[page]}
           </Typography>
           <Button
             color="primary"
@@ -142,7 +164,7 @@ const App = () => {
           >
             {`${handle.active === false ? 'Enter' : 'Exit'} FullScreen`}
           </Button>
-          <Board />
+          {pages[page]}
         </Paper>
       </FullScreen>
     </ThemeProvider>
