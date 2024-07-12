@@ -176,28 +176,26 @@ const Calendar = () => {
     precipitationTotal: 0,
   }
 
-  if (weatherData.daily.snowfallSum > 0) {
+  console.log(weatherData.current.cloudCover)
+
+  if (weatherData.daily.snowfallSum[0] > 0) {
     weatherType.emoji = '❄'
-    weatherType.precipitationChance = Math.round(
-      weatherData.daily.precipitationProbabilityMax * 100,
-      0,
-    )
+    weatherType.precipitationChance =
+      weatherData.daily.precipitationProbabilityMax[0]
     weatherType.precipitationTotal = Math.round(
       weatherData.daily.snowfallSum,
       2,
     )
-  } else if (weatherData.daily.precipitationSum > 0) {
+  } else if (weatherData.daily.precipitationProbabilityMax[0] > 0) {
     weatherType.emoji = '🌧️'
-    weatherType.precipitationChance = Math.round(
-      weatherData.daily.precipitationProbabilityMax * 100,
-      0,
-    )
+    weatherType.precipitationChance =
+      weatherData.daily.precipitationProbabilityMax[0]
     weatherType.precipitationTotal = Math.round(
-      weatherData.daily.precipitationSum,
+      weatherData.daily.precipitationSum[0],
       2,
     )
   } else if (weatherData.current.cloudCover > 0) {
-    weatherType.emoji = weatherData.current.cloudCover < 0.5 ? '⛅️' : '☁️'
+    weatherType.emoji = weatherData.current.cloudCover < 50 ? '⛅️' : '☁️'
   } else {
     weatherType.emoji = '☀️'
   }
