@@ -66,6 +66,9 @@ const theme = (color) =>
       h2: {
         fontSize: '1.75rem',
       },
+      h3: {
+        fontSize: '1.25rem',
+      },
     },
     palette: {
       white,

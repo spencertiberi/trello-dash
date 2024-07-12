@@ -30,7 +30,7 @@ const App = () => {
     const nextPage = async () => {
       setTimeout(() => {
         setPage((page + 1) % 3)
-      }, 15000)
+      }, 3000)
     }
     const fetchData = async () => {
       await fetch(

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { Flex } from '@rebass/grid'
 import { fetchWeatherApi } from 'openmeteo'
@@ -13,6 +13,7 @@ const params = {
     'apparent_temperature',
     'precipitation',
     'wind_speed_10m',
+    'cloud_cover',
   ],
   daily: [
     'temperature_2m_max',
@@ -23,6 +24,10 @@ const params = {
     'sunset',
     'uv_index_max',
     'precipitation_sum',
+    'rain_sum',
+    'showers_sum',
+    'snowfall_sum',
+    'precipitation_probability_max',
   ],
   temperature_unit: 'fahrenheit',
   wind_speed_unit: 'mph',
@@ -31,46 +36,46 @@ const params = {
   forecast_days: 1,
 }
 const url = 'https://api.open-meteo.com/v1/forecast'
-const responses = await fetchWeatherApi(url, params)
+let responses = await fetchWeatherApi(url, params)
 
 // Helper function to form time ranges
 const range = (start, stop, step) =>
   Array.from({ length: (stop - start) / step }, (_, i) => start + i * step)
 
 //Process first location. Add a for-loop for multiple locations or weather models
-const response = responses[0]
+// const response = responses[0]
 
-// Attributes for timezone and location
-const utcOffsetSeconds = response.utcOffsetSeconds()
-const current = response.current()
-const daily = response.daily()
+// // Attributes for timezone and location
+// const utcOffsetSeconds = response.utcOffsetSeconds()
+// const current = response.current()
+// const daily = response.daily()
 
-// Note: The order of weather variables in the URL query and the indices below need to match!
-const weatherData = {
-  current: {
-    time: new Date((Number(current.time()) + utcOffsetSeconds) * 1000),
-    temperature2m: current.variables(0).value(),
-    relativeHumidity2m: current.variables(1).value(),
-    apparentTemperature: current.variables(2).value(),
-    precipitation: current.variables(3).value(),
-    windSpeed10m: current.variables(4).value(),
-  },
-  daily: {
-    time: range(
-      Number(daily.time()),
-      Number(daily.timeEnd()),
-      daily.interval(),
-    ).map((t) => new Date((t + utcOffsetSeconds) * 1000)),
-    temperature2mMax: daily.variables(0).valuesArray(),
-    temperature2mMin: daily.variables(1).valuesArray(),
-    apparentTemperatureMax: daily.variables(2).valuesArray(),
-    apparentTemperatureMin: daily.variables(3).valuesArray(),
-    sunrise: daily.variables(4).valuesArray(),
-    sunset: daily.variables(5).valuesArray(),
-    uvIndexMax: daily.variables(6).valuesArray(),
-    precipitationSum: daily.variables(7).valuesArray(),
-  },
-}
+// // Note: The order of weather variables in the URL query and the indices below need to match!
+// const weatherData = {
+//   current: {
+//     time: new Date((Number(current.time()) + utcOffsetSeconds) * 1000),
+//     temperature2m: current.variables(0).value(),
+//     relativeHumidity2m: current.variables(1).value(),
+//     apparentTemperature: current.variables(2).value(),
+//     precipitation: current.variables(3).value(),
+//     windSpeed10m: current.variables(4).value(),
+//   },
+//   daily: {
+//     time: range(
+//       Number(daily.time()),
+//       Number(daily.timeEnd()),
+//       daily.interval(),
+//     ).map((t) => new Date((t + utcOffsetSeconds) * 1000)),
+//     temperature2mMax: daily.variables(0).valuesArray(),
+//     temperature2mMin: daily.variables(1).valuesArray(),
+//     apparentTemperatureMax: daily.variables(2).valuesArray(),
+//     apparentTemperatureMin: daily.variables(3).valuesArray(),
+//     sunrise: daily.variables(4).valuesArray(),
+//     sunset: daily.variables(5).valuesArray(),
+//     uvIndexMax: daily.variables(6).valuesArray(),
+//     precipitationSum: daily.variables(7).valuesArray(),
+//   },
+// }
 
 const Container = styled(Flex)`
   width: 90vw;
@@ -91,7 +96,7 @@ const Row = styled(Flex)`
 
 const Temperature = styled(Flex)`
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 `
 
@@ -108,6 +113,54 @@ const Time = styled(Flex)`
 `
 
 const Calendar = () => {
+  const getData = async () => {
+    responses = await fetchWeatherApi(url, params)
+  }
+
+  React.useEffect(() => {
+    getData()
+  })
+
+  //Process first location. Add a for-loop for multiple locations or weather models
+  const response = responses[0]
+
+  // Attributes for timezone and location
+  const utcOffsetSeconds = response.utcOffsetSeconds()
+  const current = response.current()
+  const daily = response.daily()
+
+  // Note: The order of weather variables in the URL query and the indices below need to match!
+  const weatherData = {
+    current: {
+      time: new Date((Number(current.time()) + utcOffsetSeconds) * 1000),
+      temperature2m: current.variables(0).value(),
+      relativeHumidity2m: current.variables(1).value(),
+      apparentTemperature: current.variables(2).value(),
+      precipitation: current.variables(3).value(),
+      windSpeed10m: current.variables(4).value(),
+      cloudCover: current.variables(5).value(),
+    },
+    daily: {
+      time: range(
+        Number(daily.time()),
+        Number(daily.timeEnd()),
+        daily.interval(),
+      ).map((t) => new Date((t + utcOffsetSeconds) * 1000)),
+      temperature2mMax: daily.variables(0).valuesArray(),
+      temperature2mMin: daily.variables(1).valuesArray(),
+      apparentTemperatureMax: daily.variables(2).valuesArray(),
+      apparentTemperatureMin: daily.variables(3).valuesArray(),
+      sunrise: daily.variables(4).valuesArray(),
+      sunset: daily.variables(5).valuesArray(),
+      uvIndexMax: daily.variables(6).valuesArray(),
+      precipitationSum: daily.variables(7).valuesArray(),
+      rainSum: daily.variables(8).valuesArray(),
+      showersSum: daily.variables(9).valuesArray(),
+      snowfallSum: daily.variables(10).valuesArray(),
+      precipitationProbabilityMax: daily.variables(11).valuesArray(),
+    },
+  }
+
   const temp = Math.round(weatherData.current.temperature2m, 0)
   const feelsLike = Math.round(weatherData.current.apparentTemperature, 0)
   const minTemp = Math.round(weatherData.daily.apparentTemperatureMin, 0)
@@ -115,7 +168,39 @@ const Calendar = () => {
   const currentDate = new Date()
   const hrz = currentDate.getHours()
   const min = currentDate.getMinutes()
-  const currentTime = min < 10 ? `${hrz}:0${min}` : `${hrz}:${min}`
+  let currentTime = min < 10 ? `${hrz}:0${min}` : `${hrz}:${min}`
+
+  const weatherType = {
+    emoji: '',
+    precipitationChance: 0,
+    precipitationTotal: 0,
+  }
+
+  if (weatherData.daily.snowfallSum > 0) {
+    weatherType.emoji = '❄'
+    weatherType.precipitationChance = Math.round(
+      weatherData.daily.precipitationProbabilityMax * 100,
+      0,
+    )
+    weatherType.precipitationTotal = Math.round(
+      weatherData.daily.snowfallSum,
+      2,
+    )
+  } else if (weatherData.daily.precipitationSum > 0) {
+    weatherType.emoji = '🌧️'
+    weatherType.precipitationChance = Math.round(
+      weatherData.daily.precipitationProbabilityMax * 100,
+      0,
+    )
+    weatherType.precipitationTotal = Math.round(
+      weatherData.daily.precipitationSum,
+      2,
+    )
+  } else if (weatherData.current.cloudCover > 0) {
+    weatherType.emoji = weatherData.current.cloudCover < 0.5 ? '⛅️' : '☁️'
+  } else {
+    weatherType.emoji = '☀️'
+  }
 
   return (
     <Container>
@@ -147,6 +232,37 @@ const Calendar = () => {
               variant="h1"
               sx={{
                 color: 'primary.text',
+                margin: '1rem 1.5rem 0',
+              }}
+            >
+              {weatherType.emoji}
+            </Typography>
+            <Typography
+              variant="h3"
+              sx={{
+                color: 'primary.text',
+                margin: '0rem 1.5rem 0',
+              }}
+            >
+              {weatherType.precipitationChance > 0 &&
+                `${weatherType.precipitationChance}%`}
+            </Typography>
+            <Typography
+              variant="h3"
+              sx={{
+                color: 'primary.text',
+                margin: '0.25rem 1.5rem 0',
+              }}
+            >
+              {weatherType.precipitationTotal > 0 &&
+                `${weatherType.precipitationTotal} in`}
+            </Typography>
+          </Column>
+          <Column>
+            <Typography
+              variant="h1"
+              sx={{
+                color: 'primary.text',
                 fontSize: '5em',
                 margin: '0.25rem 0 0.75rem',
               }}
@@ -164,7 +280,7 @@ const Calendar = () => {
               variant="h2"
               sx={{
                 color: 'primary.text',
-                margin: '0.25rem 1.5rem 0.75rem',
+                margin: '1rem 1.5rem 0.75rem',
               }}
             >{`High ${maxTemp} °F`}</Typography>
             <Typography
