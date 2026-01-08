@@ -29,8 +29,8 @@ const App = () => {
   React.useEffect(() => {
     const nextPage = async () => {
       setTimeout(() => {
-        setPage((page + 1) % 3)
-      }, 3000)
+        setPage((page + 1) % 2)
+      }, 8000)
     }
     const fetchData = async () => {
       await fetch(
@@ -117,8 +117,8 @@ const App = () => {
     )
   }
 
-  const pages = [<Board />, <Calendar />, <Vision />]
-  const titles = ['TODOs', 'Dashboard', 'Vision']
+  const pages = [<Board />, <Vision />]
+  const titles = ['TODOs', 'Vision']
 
   return (
     <ThemeProvider theme={theme(color[page])}>

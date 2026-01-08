@@ -56,47 +56,47 @@ const Column = styled(Flex)`
 
 const spencer = [
   {
-    time: 'August 2024',
-    event: 'Haas Year 2 Begins',
+    time: 'March 2026',
+    event: '35th Birthday',
   },
   {
-    time: 'September 2024',
-    event: 'Group Product Manager',
-  },
-  {
-    time: 'January 2025',
-    event: 'Haas in Napa',
-  },
-  {
-    time: 'March 2025',
-    event: '34th Birthday',
-  },
-  {
-    time: 'June 2025',
-    event: 'Kid A',
-  },
-  {
-    time: 'December 2025',
+    time: 'May 2026',
     event: 'Graduate from Haas',
   },
   {
-    time: 'November 2025',
-    event: 'Director of Product',
+    time: 'June 2026',
+    event: "Kaito's First Birthday",
   },
   {
-    time: 'July 2027',
+    time: 'June 2026',
+    event: 'Start New Product Role',
+  },
+  {
+    time: 'October 2026',
+    event: 'Group Product Manager',
+  },
+  {
+    time: 'July 2030',
     event: 'VP of Product',
   },
 ]
 
 const tanya = [
   {
-    time: 'November 2024',
-    event: '36th Birthday',
+    time: 'May 2026',
+    event: 'Open 2P Market',
   },
   {
-    time: 'June 2025',
-    event: 'Kid A',
+    time: 'June 2026',
+    event: "Kaito's First Birthday",
+  },
+  {
+    time: 'November 2026',
+    event: '38th Birthday',
+  },
+  {
+    time: 'TBD 2027',
+    event: 'Open New Concept',
   },
 ]
 
@@ -113,7 +113,7 @@ const Vision = () => (
       >
         Tanya
       </Typography>
-      <Timeline sx={{ width: '45vw' }}>
+      <Timeline position="alternate" sx={{ width: '45vw' }}>
         {tanya.map(({ time, event }) => (
           <Item time={time} event={event} />
         ))}
