@@ -63,7 +63,7 @@ const theme = (color) =>
         fontWeight: 'bold',
       },
       h2: {
-        fontSize: '1.75rem',
+        fontSize: '2rem',
       },
       h3: {
         fontSize: '1.25rem',
@@ -86,7 +86,7 @@ const theme = (color) =>
         light: `#ffffffaa`,
         main: `#ffffff55`,
         dark: `${color}ff`,
-        contrastText: '#000000aa',
+        contrastText: '#00000088',
       },
       // Teal
       secondary: {

@@ -1,12 +1,11 @@
-import { Cards } from './styles'
+import { Cards, ListBackground, ListHeader } from './styles'
 import {
   Avatar,
   Card,
   CardHeader,
   Chip,
   Stack,
-  Paper,
-  Typography,
+  Paper
 } from '@mui/material'
 import config from '../../config'
 
@@ -94,9 +93,9 @@ const List = ({ title, cards, members }) => {
   const titleColor = () => {
     switch (title) {
       case 'Complete':
-        return 'primary.main'
+        return 'primary.dark'
       case 'Backlog':
-        return 'primary.main'
+        return 'primary.light'
       default:
         return 'primary.light'
     }
@@ -111,18 +110,19 @@ const List = ({ title, cards, members }) => {
       }}
       elevation={0}
     >
-      <Typography variant="h2" sx={{ color: titleColor() }}>
+      <ListHeader variant="h2" sx={{ color: titleColor() }}>
         {title}
-      </Typography>
-      <Paper
-        elevation={1}
+      </ListHeader>
+      <ListBackground
+        elevation={0}
         sx={{
           width: '18vw',
-          padding: '1vw',
-          backgroundColor: listColor(),
-          height: '80vh',
+          padding: '0.5vw',
+          backgroundColor: 'transparent',
+          height: '70vh',
           overflow: 'scroll',
         }}
+        backGround= {`linear-gradient(0deg, rgba(ff,ff,ff,0) 0%, ${listColor()} 100%)`}
       >
         <Cards>
           {cards.map((card, i) => (
@@ -134,7 +134,7 @@ const List = ({ title, cards, members }) => {
             />
           ))}
         </Cards>
-      </Paper>
+      </ListBackground>
     </Paper>
   )
 }

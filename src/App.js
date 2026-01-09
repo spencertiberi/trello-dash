@@ -130,9 +130,10 @@ const App = () => {
             justifyContent: 'center',
             alignItems: 'center',
             width: '100vw',
-            height: '100vh',
+            height: '90vh',
             backgroundColor: 'primary.dark',
             borderRadius: '0px',
+            padding: '5vh 0',
           }}
         >
           <Typography
