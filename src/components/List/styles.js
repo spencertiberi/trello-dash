@@ -20,6 +20,7 @@ export const ListHeader = styled(Typography)`
 `
 
 export const ListBackground = styled(Paper)`
-  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 100%);
+  background: ${props => props.complete ? `linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0.1) 100%)` : 
+    `linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 100%)`};
   border-radius: 0px 0px 5px 5px;
 `

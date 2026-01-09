@@ -93,7 +93,7 @@ const List = ({ title, cards, members }) => {
   const titleColor = () => {
     switch (title) {
       case 'Complete':
-        return 'primary.dark'
+        return 'primary.contrastText'
       case 'Backlog':
         return 'primary.light'
       default:
@@ -122,7 +122,7 @@ const List = ({ title, cards, members }) => {
           height: '70vh',
           overflow: 'scroll',
         }}
-        backGround= {`linear-gradient(0deg, rgba(ff,ff,ff,0) 0%, ${listColor()} 100%)`}
+        complete={title == "Complete"}
       >
         <Cards>
           {cards.map((card, i) => (
