@@ -22,7 +22,7 @@ const App = () => {
   const [lists, setLists] = React.useState([])
   const [cards, setCards] = React.useState([])
   const [page, setPage] = React.useState(0)
-  const [color, setColor] = React.useState([colorGen(), colorGen(), colorGen()])
+  const [color, setColor] = React.useState(['#4E8EA2', '#BB6888', colorGen()])
 
   const handle = useFullScreenHandle()
 

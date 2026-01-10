@@ -58,16 +58,16 @@ const ListCard = ({ cardInfo, members, listTitle }) => {
         avatar={listTitle !== 'Backlog' && avatar}
         title={cardInfo.name}
         titleTypographyProps={{
-          fontSize: '1.1rem',
+          fontSize: '0.9rem',
           color: `${color}.dark`,
         }}
         subheaderTypographyProps={{
           color: listTitle !== 'Complete' ? 'error.light' : 'success.light',
         }}
         subheader={cardInfo.due ? `Due: ${dueDate.toDateString()}` : ''}
-        sx={{ padding: '16px 16px 0' }}
+        sx={{ padding: '16px 16px', alignItems: 'start' }}
       />
-      {listTitle !== 'Backlog' && <Labels />}
+      {/* {listTitle !== 'Backlog' && <Labels />} */}
     </Card>
   )
 }
@@ -119,7 +119,7 @@ const List = ({ title, cards, members }) => {
           width: '18vw',
           padding: '0.5vw',
           backgroundColor: 'transparent',
-          height: '70vh',
+          height: '67vh',
           overflow: 'scroll',
         }}
         complete={title == "Complete"}

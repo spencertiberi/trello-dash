@@ -118,17 +118,17 @@ const theme = (color) =>
       tanya: {
         light: '#60ad5e',
         oldLight: '#60ad5e',
-        main: '#2e7d32',
+        main: '#5E734E',
         oldDark: '#005005',
-        dark: '#004e03',
+        dark: '#3C4932',
         contrastText: white,
       },
       spencer: {
         light: '#58a5f0',
         oldLight: '#58a5f0',
-        main: '#0277bd',
+        main: '#76699F',
         oldDark: '#004c8c',
-        dark: '#002c6c',
+        dark: '#484064',
         contrastText: white,
       },
       alternating: {
