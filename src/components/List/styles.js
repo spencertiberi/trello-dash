@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Flex } from '@rebass/grid'
-import { Typography, Paper, Card } from '@mui/material'
+import { Typography, Paper, Card, CardHeader } from '@mui/material'
 
 export const ListWrapper = styled(Flex)`
   flex-direction: column;
@@ -18,6 +18,10 @@ export const Cards = styled(Flex)`
 export const ListHeader = styled(Typography)`
   font-size: 2em;
   margin-bottom: 1em;
+`
+
+export const OurHeader = styled(CardHeader)`
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.7);
 `
 
 export const ListBackground = styled(Paper)`

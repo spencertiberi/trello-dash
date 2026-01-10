@@ -140,7 +140,7 @@ const App = () => {
             variant="h1"
             sx={{
               color: 'primary.contrastText',
-              margin: '0.25rem 0 0.75rem',
+              margin: '0.25rem 0 1.75rem',
             }}
           >
             19 Buck _____________
@@ -150,7 +150,7 @@ const App = () => {
             sx={{
               color: 'primary',
               position: 'relative',
-              top: '-3.25rem',
+              top: '-4.08rem',
               left: '7.75rem',
               lineHeight: '0',
             }}

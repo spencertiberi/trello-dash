@@ -1,8 +1,7 @@
-import { Cards, ListBackground, ListHeader } from './styles'
+import { Cards, ListBackground, ListHeader, OurHeader } from './styles'
 import {
   Avatar,
   Card,
-  CardHeader,
   Chip,
   Stack,
   Paper
@@ -48,24 +47,24 @@ const ListCard = ({ cardInfo, members, listTitle }) => {
   return (
     <Card
       sx={{
-        bgcolor: color !== defaultColor ? 'lightenColor' : color,
+        bgcolor: color !== defaultColor ? 'darkenColor' : color,
         margin: '0 0 10px',
-        opacity: ['Complete', 'Backlog'].includes(listTitle) ? 0.7 : 1,
+        opacity: ['Complete', 'Backlog'].includes(listTitle) ? 0.6 : 1,
       }}
       elevation={2}
     >
-      <CardHeader
+      <OurHeader
         avatar={listTitle !== 'Backlog' && avatar}
         title={cardInfo.name}
         titleTypographyProps={{
-          fontSize: '0.9rem',
-          color: `${color}.dark`,
+          fontSize: '1.2rem',
+          color: `${color}.light`,
         }}
         subheaderTypographyProps={{
           color: listTitle !== 'Complete' ? 'error.light' : 'success.light',
         }}
         subheader={cardInfo.due ? `Due: ${dueDate.toDateString()}` : ''}
-        sx={{ padding: '16px 16px', alignItems: 'start' }}
+        sx={{ padding: '24px 18px', alignItems: 'start' }}
       />
       {/* {listTitle !== 'Backlog' && <Labels />} */}
     </Card>

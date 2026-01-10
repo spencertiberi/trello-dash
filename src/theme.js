@@ -46,7 +46,7 @@ const theme = (color) =>
   createTheme({
     typography: {
       fontFamily: [
-        'Roboto',
+        'Mulish',
         '-apple-system',
         'BlinkMacSystemFont',
         '"Segoe UI"',
@@ -61,6 +61,18 @@ const theme = (color) =>
       h1: {
         fontSize: '4rem',
         fontWeight: 'bold',
+        fontFamily: [
+          'Jost',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          '"Segoe UI"',
+          '"Helvetica Neue"',
+          'Arial',
+          'sans-serif',
+          '"Apple Color Emoji"',
+          '"Segoe UI Emoji"',
+          '"Segoe UI Symbol"',
+        ].join(',')
       },
       h2: {
         fontSize: '2rem',
@@ -116,7 +128,7 @@ const theme = (color) =>
         contrastText: white,
       },
       tanya: {
-        light: '#60ad5e',
+        light: '#B6C5AA',
         oldLight: '#60ad5e',
         main: '#5E734E',
         oldDark: '#005005',
@@ -124,7 +136,7 @@ const theme = (color) =>
         contrastText: white,
       },
       spencer: {
-        light: '#58a5f0',
+        light: '#BBB4CF',
         oldLight: '#58a5f0',
         main: '#76699F',
         oldDark: '#004c8c',
