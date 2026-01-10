@@ -48,7 +48,7 @@ const ListCard = ({ cardInfo, members, listTitle }) => {
   return (
     <Card
       sx={{
-        bgcolor: color !== defaultColor ? 'offWhite' : color,
+        bgcolor: color !== defaultColor ? 'lightenColor' : color,
         margin: '0 0 10px',
         opacity: ['Complete', 'Backlog'].includes(listTitle) ? 0.7 : 1,
       }}
